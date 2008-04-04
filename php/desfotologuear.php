@@ -80,11 +80,21 @@
 
         function desmultiplicar($word) {
             $exceptions = array('http','www','://', 'ss', 'ppio', 'ff', 'bb', 'kiss');
-            if (preg_match("/^bs[s]+$/",strtolower($word))) {
+
+            $lword = strtolower($word);
+
+            if (preg_match("/^bs[s]+$/",$lword)) {
                 return 'besos';
             }
 
-            $lword = strtolower($word);
+            if (preg_match("/^mm[m]+[h]*$/",$lword)) {
+                return 'mmmh';
+            }
+
+            if (preg_match("/^aa[a]+[h]*$/",$lword)) {
+                return 'aaah';
+            }
+
 
 /*            if (!preg_match("/(^[\w])(\\1)*$/",$word)) {*/
            if (!in_array($lword, $exceptions) and substr($lword,0,3) != '...') {

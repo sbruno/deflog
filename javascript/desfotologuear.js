@@ -1,3 +1,11 @@
+/********************************************************
+* DeFlog 2008-04-04                                     *
+* Traduce Fotolog/SMS a español                         *
+* http://www.santiagobruno.com.ar/programas.html#deflog *
+* Licencia: GPL v3                                      *
+********************************************************/
+
+//comienza codigo prestado:
 
 /*http://soledadpenades.com/2007/05/17/arrayindexof-in-internet-explorer/*/
 	if(!Array.indexOf){
@@ -126,14 +134,14 @@ function Hash()
 
 	this.hasItem = function(in_key)
 	{
-                //funny bug here... Can't use != 'undefined', since if I check for the key 'reverse', or
+                //funny problem here... Can't use != 'undefined', since if I check for the key 'reverse', or
                 //'length', etc, the function for this object will be returned.
 		return typeof(this.items[in_key]) == 'string';
 	}
 }
 
 
-// end of borrowed code
+// fin codigo prestado
 
 
         function tohtml(txt_in) {
@@ -212,11 +220,21 @@ function isLowerCaseString(aString)
 
         function desmultiplicar(word) {
             var exceptions = new Array('http','www','://', 'ss', 'ppio', 'ff', 'bb', 'kiss');
-            if (word.toLowerCase().match(/^bs[s]+$/)) {
+
+            var lword = word.toLowerCase();
+
+            if (lword.match(/^bs([s]+)$/)) {
                 return 'besos';
             }
 
-            var lword = word.toLowerCase();
+            if (lword.match(/^mm[m]+[h]*$/)) {
+                return 'mmmh';
+            }
+
+            if (lword.match(/^aa[a]+[h]*$/)) {
+                return 'aaah';
+            }
+
             var pos = 0;
 
            if (exceptions.indexOf(lword) == -1 && lword.substr(0,3) != '...') {
@@ -640,7 +658,7 @@ function isLowerCaseString(aString)
 
         original = original.replace(/\r\n/g,"</br>");
         original = original.replace(/\n/g,"</br>");
-        var words = original.split(/([\w\dáéíóúñ+!¡]+)/);
+        var words = original.split(/([\w\dáéíóúñ+]+)/);
         translationbox = document.getElementById('result_box');
 
         var result = "";
