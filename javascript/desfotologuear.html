@@ -1,0 +1,155 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+<meta http-equiv="Content-Language" content="es"/>
+<meta name="description" content="Traducir texto en idioma fotolog, sms, etc a espa&ntilde;ol legible"/>
+<meta name="keywords" content="flog flogger floggers fotolog sms traductor translator"/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link type="text/css" href="desfotologuear.css" rel="stylesheet" />
+
+<title>Desfotologueador</title>
+</head>
+
+<body onload="useVariables()">
+ <script src="desfotologuear.js" type="text/javascript"> </script>
+
+<script language="javascript" type="text/javascript">
+      // Read a page's GET URL variables and return them as an associative array. http://snipplr.com/view/799/get-url-variables/
+      function getUrlVars() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+      }
+
+
+    function URLDecode (encodedString) {
+    /* http://cass-hacks.com/articles/code/js_url_encode_decode/ */
+        var output = encodedString;
+        var binVal, thisString;
+        var myregexp = /(%[^%]{2})/;
+        while ((match = myregexp.exec(output)) != null
+                    && match.length > 1
+                    && match[1] != '') {
+            binVal = parseInt(match[1].substr(1),16);
+            thisString = String.fromCharCode(binVal);
+            output = output.replace(match[1], thisString);
+        }
+        return output;
+    }
+
+
+      function useVariables() {
+        var vars = getUrlVars();
+
+	if (typeof(vars['deszezear']) != 'undefined') {
+            document.getElementById('deszezear').checked = 'checked';
+        }
+
+	if (typeof(vars['nodesk']) != 'undefined') {
+            document.getElementById('nodesk').checked = 'checked';
+
+        }
+
+	if (typeof(vars['text']) != 'undefined') {
+            document.getElementById('source').innerHTML = URLDecode(vars['text']).replace(/\+/g," ");
+            desfotologuear();
+        }
+
+    }
+
+</script>
+
+
+    <div align="right" style="font-size: medium; font-family: arial,sans-serif; width:100%">
+    <span style="font-size: 84%;">
+    <a href="#" onclick="alert('CLP!!!!');" >Ayuda</a>
+    </span>
+    </div>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-size: medium;">
+    <tr>
+    <td width="1%" height="62">
+    <img width="150" height="62" border="0" style="margin: 0pt 4px 0pt 0pt;" src="deflog.gif" alt="Deflog"/>
+    </td>
+    <td width="100%" align="right">
+    </td>
+    </tr>
+    </table>
+
+    <h4>Desfotologuear texto:</h4>
+    <form action="desfotologuear.html" method="post" name="form1" id="form1">
+
+        <table id="texttable">
+        <tr>
+            <td id="original_text" colspan="2">
+            Texto Original:
+            </td>
+            <td id="autotrans">
+            Texto Traducido:
+            </td>
+        </tr>
+        <tr valign="top">
+            <td id="sourcecell">
+                <textarea id="source" name="text"></textarea>
+            </td>
+            <td id="gap">
+                &nbsp;
+            </td>
+            <td class="almost_half_cell">
+            <div id="result_box" dir="ltr">
+            </div></td>
+        </tr>
+    
+        <tr>
+            <td id="submitcell">
+                <table>
+
+                <tr>
+
+                <td id="selectcell">
+                    <select name="langpair">
+                        <option value="flog|es">Fotolog a Espa&ntilde;ol</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" onclick="return desfotologuear()" value="Traducir"/>
+                </td>
+
+                </tr>
+
+                <tr>
+                <td>
+                <input type=checkbox name="deszezear" id="deszezear">Deszezear
+                </td>
+                <td>
+                <input type=checkbox name="nodesk" id="nodesk">No des-k-ar
+                </td>
+                </tr>
+
+
+                </table>
+            </td>
+
+            <td>
+            </td>
+
+            <td align="right">
+            <span id="zippyspan" onclick="alert('SS 1 BLD!!!!');" style="visibility: visible;">
+            <img style="margin-right: 0.33em;" src="icono_mas.gif" alt="Sugerir mejor traducci&oacute;n"/>Proponer una traducci&oacute;n mejor
+            </span>
+            </td>
+        </tr>
+    
+    
+        </table>
+    </form>
+
+    <div class="footer">
+    <a href="http://www.santiagobruno.com.ar">My Home</a> - <a href="http://cervezaconlupines.blogspot.com/2008/03/presentando-deflog.html">About This Shit</a> - <a href="http://www.santiagobruno.com.ar/javascript/desfotologuear.html?text=LocURaAAaaA%21%21%21%0D%0Ake+loko+estoooo+mIeRdA%21%21%21%0D%0A%0D%0AAaAaAAAaaAiiiii++firmeeennnn+leeemmmddoooo%21%21%21%0D%0A%0D%0Anuc+k+pasa+ak.+t+voi+a+ver+dsp.%0D%0Aqe+andes+d+mil%21%21%0D%0AbesOtte%0D%0A%0D%0Aesto+q+m+dijistes+ta+groxo+maallll+grax+xq+m+dijistessss+cdo+lo+vistessssss%0D%0A%0D%0Atoy+reeee+lokooo+blds%21%21%0D%0Aaahhrrreee%0D%0At+qiero%2C+we%2C+chauuuu%21%21%21%0D%0Abss.&amp;langpair=flog%7Ces">Translation Example</a><br/><br/>This site is not affiliated with Google and is not against floggers or any internet community<br/><br/>©2008 Santiago Bruno</div>
+
+</body>
+</html>
