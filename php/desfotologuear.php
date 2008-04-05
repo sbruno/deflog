@@ -95,6 +95,15 @@
                 return 'aaah';
             }
 
+            if (preg_match("/^ba[a]+[h]*$/",$lword)) {
+                return 'baaah';
+            }
+
+            if (preg_match("/^bu[u]+[h]*$/",$lword)) {
+                return 'buuu';
+            }
+
+
 
 /*            if (!preg_match("/(^[\w])(\\1)*$/",$word)) {*/
            if (!in_array($lword, $exceptions) and substr($lword,0,3) != '...') {

@@ -235,6 +235,14 @@ function isLowerCaseString(aString)
                 return 'aaah';
             }
 
+            if (lword.match(/^ba[a]+[h]*$/)) {
+                return 'baaah';
+            }
+
+            if (lword.match(/^bu[u]+[h]*$/)) {
+                return 'buuu';
+            }
+
             var pos = 0;
 
            if (exceptions.indexOf(lword) == -1 && lword.substr(0,3) != '...') {
