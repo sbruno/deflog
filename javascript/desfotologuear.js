@@ -624,8 +624,8 @@ function isLowerCaseString(aString)
                     word = lword;
                 }
     
-                if (lword.length > 2 && lword.substr(0,2) == 'ds')  {
-                    lword = "des" + lword.substr(2);
+                if (lword.length > 2 && lword[0] == 'd' && vocales.indexOf(lword[1]) == -1)  {
+                    lword = "de" + lword.substr(1);
                     word = lword;
                 }
     

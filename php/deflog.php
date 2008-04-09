@@ -454,8 +454,8 @@
                     $word = $lword;
                 }
     
-                if (strlen($lword) > 2 and substr($lword,0,2) == 'ds')  {
-                    $lword = "des".substr($lword,2);
+                if (strlen($lword) > 2 and $lword{0} == 'd' and !in_array($lword{1}, $vocales))  {
+                    $lword = "de".substr($lword,1);
                     $word = $lword;
                 }
     
