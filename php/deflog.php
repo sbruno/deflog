@@ -434,7 +434,8 @@
         }
 
         function fixmissingvowels($word) {
-            $vocales = array('a', 'e', 'i', 'o','u');
+            $vocales = array('a', 'e', 'i', 'o', 'u');
+            $followsd = array('a', 'e', 'i', 'o', 'u', 'r', 'h', 'y');
             $exceptions = array('get', 'cat', 'that', 'best', 'post', 'net', 'chat');
             $lword = strtolower($word);
             if (!in_array($lword, $exceptions)) {
@@ -454,7 +455,7 @@
                     $word = $lword;
                 }
     
-                if (strlen($lword) > 2 and $lword{0} == 'd' and !in_array($lword{1}, $vocales))  {
+                if (strlen($lword) > 2 and $lword{0} == 'd' and !in_array($lword{1}, $followsd))  {
                     $lword = "de".substr($lword,1);
                     $word = $lword;
                 }

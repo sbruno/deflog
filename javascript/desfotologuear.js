@@ -604,7 +604,8 @@ function isLowerCaseString(aString)
         }
 
         function fixmissingvowels(word) {
-            vocales = new Array('a', 'e', 'i', 'o','u');
+            vocales = new Array('a', 'e', 'i', 'o', 'u');
+            followsd = new Array('a', 'e', 'i', 'o', 'u', 'r', 'h', 'y');
             exceptions = new Array('get', 'cat', 'that', 'best', 'post', 'net', 'chat');
             lword = word.toLowerCase();
             if (exceptions.indexOf(lword) == -1) {
@@ -624,7 +625,7 @@ function isLowerCaseString(aString)
                     word = lword;
                 }
     
-                if (lword.length > 2 && lword[0] == 'd' && vocales.indexOf(lword[1]) == -1)  {
+                if (lword.length > 2 && lword[0] == 'd' && followsd.indexOf(lword[1]) == -1)  {
                     lword = "de" + lword.substr(1);
                     word = lword;
                 }
