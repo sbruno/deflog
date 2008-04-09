@@ -158,7 +158,8 @@ function Hash()
             txt = txt.replace(/ª/g, "a");
             txt = txt.replace(/º/g, "o");
             txt = txt.replace(/ = /g," igual ");
-            txt = txt.replace(/(\w*?)[¡!](\w)/g,"$1i$2");
+            txt = txt.replace(/(\w*?)!(\w)/g,"$1i$2");
+            txt = txt.replace(/(\w+?)¡/g,"$1i");
             return txt;
         }
 

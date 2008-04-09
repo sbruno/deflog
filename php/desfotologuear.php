@@ -32,10 +32,9 @@
             $text = str_replace("ª", "a", $text);
             $text = str_replace("º", "o", $text);
             $text = str_replace(" = "," igual ",$text);
-            $text = preg_replace("/(\w*?)[¡!](\w)/","\\1i\\2",$text);
+            $text = preg_replace("/(\w*?)!(\w)/","\\1i\\2",$text);
+            $text = preg_replace("/(\w+?)¡/","\\1i",$text);
 
-/*            $text = str_replace("â&#128;¢", "o", $text);*/
-/*            $text = preg_replace("/[fF]\/[fF]/","ff",$text);*/
             return $text;
         }
 
@@ -47,14 +46,7 @@
                 $text = str_replace("4", "a", $text);
                 $text = str_replace("5", "s", $text);
                 $text = str_replace("7", "t", $text);
-
-    /*            $text = preg_replace("/(\w*?)[0](\w*?)/","\\1o\\2",$text);
-                $text = preg_replace("/(\w*?)[1](\w*?)/","\\1i\\2",$text);
-                $text = preg_replace("/(\w*?)[3](\w*?)/","\\1e\\2",$text);
-                $text = preg_replace("/(\w*?)[4](\w*?)/","\\1a\\2",$text);
-                $text = preg_replace("/(\w*?)[5](\w*?)/","\\1a\\2",$text);
-                $text = preg_replace("/(\w*?)[7](\w*?)/","\\1t\\2",$text);
-    */        }
+            }
             return $text;
         }
 
@@ -273,10 +265,6 @@
                     $lword = "much".substr($lword,3);
                     $word = $lword;
                 }
-//                 if ($lword != '=p' and $lword != '=d' and substr($lword,0,1) == '=')  {
-//                     $lword = "igual".substr($lword,1);
-//                     $word = $lword;
-//                 }
 
                 return $word;
             }
