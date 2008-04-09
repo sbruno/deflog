@@ -650,6 +650,12 @@ function isLowerCaseString(aString)
     function desfotologuear() {
         original = dessimbolizar(document.forms[0].elements[0].value);
 
+        if (document.getElementById('desmultiplicar').checked) {
+            desmultiplicar_value = 1;
+        }
+        else {
+            desmultiplicar_value = 0;
+        }
 
         if (document.getElementById('deszezear').checked) {
             deszezear_value = 1;
@@ -658,12 +664,56 @@ function isLowerCaseString(aString)
             deszezear_value = 0;
         }
 
-        if (document.getElementById('nodesk').checked) {
-            nodesk_value = 1;
+        if (document.getElementById('deskar').checked) {
+            deskar_value = 1;
         }
         else {
-            nodesk_value = 0;
+            deskar_value = 0;
         }
+
+        if (document.getElementById('dessmsar').checked) {
+            dessmsar_value = 1;
+        }
+        else {
+            dessmsar_value = 0;
+        }
+
+        if (document.getElementById('desestupidizar').checked) {
+            desestupidizar_value = 1;
+        }
+        else {
+            desestupidizar_value = 0;
+        }
+
+        if (document.getElementById('desalternar').checked) {
+            desalternar_value = 1;
+        }
+        else {
+            desalternar_value = 0;
+        }
+
+        if (document.getElementById('desporteniar').checked) {
+            desporteniar_value = 1;
+        }
+        else {
+            desporteniar_value = 0;
+        }
+
+        if (document.getElementById('deleet').checked) {
+            deleet_value = 1;
+        }
+        else {
+            deleet_value = 0;
+        }
+
+
+        if (document.getElementById('fixmissingvowels').checked) {
+            fixmissingvowels_value = 1;
+        }
+        else {
+            fixmissingvowels_value = 0;
+        }
+
 
         original = original.replace(/\r\n/g,"</br>");
         original = original.replace(/\n/g,"</br>");
@@ -675,21 +725,46 @@ function isLowerCaseString(aString)
         var i = 0;
         while (i < words.length)
         {
-            temp_result = desestupidizar(desms(desmultiplicar(desalternar(deleet(tohtml(words[i]))))));
+            temp_result = tohtml(words[i]);
 
-            if (!deszezear_value && !nodesk_value) {
+            if (deleet_value) {
+                temp_result = deleet(temp_result);
+            }
+
+            if (desalternar_value) {
+                temp_result = desalternar(temp_result);
+            }
+
+            if (desmultiplicar_value) {
+                temp_result = desmultiplicar(temp_result);
+            }
+
+            if (dessmsar_value) {
+                temp_result = desms(temp_result);
+            }
+
+            if (desestupidizar_value) {
+                temp_result = desestupidizar(temp_result);
+            }
+
+            if (deskar_value) {
                 temp_result = desk(temp_result);
             }
 
-            else if (deszezear_value && nodesk_value) {
+            if (deszezear_value) {
                 temp_result = deszezear(temp_result);
             }
 
-            else if (deszezear_value && !nodesk_value) {
-                temp_result = deszezear(desk(temp_result));
+            if (desporteniar_value) {
+                temp_result = desporteniar(temp_result);
             }
 
-            result = result + fixmissingvowels(desporteniar(temp_result));
+            if (fixmissingvowels_value) {
+                temp_result = fixmissingvowels(temp_result);
+            }
+
+
+            result = result + temp_result;
 
             i = i + 1;
         }
