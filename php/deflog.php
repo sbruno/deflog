@@ -1,5 +1,13 @@
     <?php
 
+/********************************************************
+* DeFlog 2008-04-10                                     *
+* Traduce Fotolog/SMS a español                         *
+* http://www.santiagobruno.com.ar/programas.html#deflog *
+* Licencia: GPL v3                                      *
+********************************************************/
+
+
         function stringrpos($haystack,$needle,$offset=NULL)
         {
             return strlen($haystack)
@@ -191,15 +199,19 @@
                     'tkm' => 'te quiero mucho',
                     'tmb' => 'tambi&eacute;n',
                     'tmbn' => 'tambi&eacute;n',
+                    'tmp' => 'tampoco',
+                    'tngo' => 'tengo',
                     'tp' => 'tampoco',
                     'toy' => 'estoy',
                     'tk' => 'te quiero',
                     'tq' => 'te quiero',
                     'vac' => 'vacaciones',
+                    'vr' => 'ver',
                     'x' => 'por',
                     'xa' => 'para',
                     'xat' => 'chat',
                     'xk' => 'porque',
+                    'xke' => 'porque',
                     'xo' => 'pero',
                     'xq' => 'porque',
                     'xqe' => 'porque'
@@ -493,3 +505,4 @@
 
 
     ?>
+    
