@@ -299,6 +299,7 @@ function isLowerCaseString(aString)
                                         'cmo' , 'como',
                                         'd' , 'de',
                                         'dle' , 'dale',
+                                        'dnd' , 'donde',
                                         'dsd' , 'desde',
                                         'dsp' , 'despu&eacute;s',
                                         'flia' , 'familia',
