@@ -1,7 +1,7 @@
     <?php
 
 /********************************************************
-* DeFlog 2008-04-10                                     *
+* DeFlog 2008-05-02                                     *
 * Traduce Fotolog/SMS a español                         *
 * http://www.santiagobruno.com.ar/programas.html#deflog *
 * Licencia: GPL v3                                      *
@@ -225,7 +225,7 @@
             }
             else {
                 $lword = strtolower($word);
-                if (preg_match("/qe/",$lword)   or preg_match("/ke/",$lword) or preg_match("/qi/",$lword)) {
+                if (preg_match("/qe/",$lword) or preg_match("/ke/",$lword) or preg_match("/qi/",$lword)) {
                     $lword = str_replace('qe', 'que', $lword);
                     $lword = str_replace('ke', 'que', $lword);
                     $lword = str_replace('qi', 'qui', $lword);
@@ -309,6 +309,7 @@
                     'kmo' => 'como',
                     'kn' => 'con',
                     'oi' => 'hoy',
+                    'moy' => 'muy',
                     'muchio' => 'mucho',
                     'mu' => 'muy',
                     'mui' => 'muy',
@@ -383,6 +384,18 @@
                 if (strlen($lword) > 2 and substr($lword,0,3) == 'oka')  {
                     $lword = "ok";
                     $word = $lword;
+                }
+
+
+                //posible risa
+                if (strlen($lword) > 6) {
+                    if (preg_match("/\b((j|a|k)+)\b/", $lword)) {
+                        return "jajaja";
+                    }
+                    else if (strlen($lword) > 8 and preg_match("/\b((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)\b/", $lword)) {
+                         return "jajaja";
+                    }
+
                 }
 
                 return $word;

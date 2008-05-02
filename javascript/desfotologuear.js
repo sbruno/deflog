@@ -1,5 +1,5 @@
 /********************************************************
-* DeFlog 2008-04-10                                     *
+* DeFlog 2008-05-02                                     *
 * Traduce Fotolog/SMS a español                         *
 * http://www.santiagobruno.com.ar/programas.html#deflog *
 * Licencia: GPL v3                                      *
@@ -464,6 +464,7 @@ function isLowerCaseString(aString)
                     'kmo' , 'como',
                     'kn' , 'con',
                     'oi' , 'hoy',
+                    'moy', 'muy',
                     'muchio' , 'mucho',
                     'mu' , 'muy',
                     'mui' , 'muy',
@@ -539,6 +540,18 @@ function isLowerCaseString(aString)
                     lword = "ok";
                     word = lword;
                 }
+
+                //posible risa
+                if (lword.length > 6) {
+                    if (lword.match(/\b((j|a|k)+)\b/)) {
+                        return "jajaja";
+                    }
+                    else if (lword.length > 8 && lword.match(/\b((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)\b/)) {
+                         return "jajaja";
+                    }
+
+                }
+
 
                 return word;
             }
