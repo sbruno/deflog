@@ -543,10 +543,10 @@ function isLowerCaseString(aString)
 
                 //posible risa
                 if (lword.length > 6) {
-                    if (lword.match(/\b((j|a|k)+)\b/)) {
+                    if (lword.match(/^((j|a|k)+)$/)) {
                         return "jajaja";
                     }
-                    else if (lword.length > 8 && lword.match(/\b((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)\b/)) {
+                    else if (lword.length > 8 && lword.match(/^((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)$/)) {
                          return "jajaja";
                     }
 

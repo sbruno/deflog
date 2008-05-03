@@ -389,10 +389,10 @@
 
                 //posible risa
                 if (strlen($lword) > 6) {
-                    if (preg_match("/\b((j|a|k)+)\b/", $lword)) {
+                    if (preg_match("/^((j|a|k)+)$/", $lword)) {
                         return "jajaja";
                     }
-                    else if (strlen($lword) > 8 and preg_match("/\b((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)\b/", $lword)) {
+                    else if (strlen($lword) > 8 and preg_match("/^((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)$/", $lword)) {
                          return "jajaja";
                     }
 
