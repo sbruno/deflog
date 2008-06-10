@@ -546,7 +546,7 @@ function isLowerCaseString(aString)
                     if (lword.match(/^((j|a|k)+)$/)) {
                         return "jajaja";
                     }
-                    else if (lword.length > 8 && lword.match(/^((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)$/)) {
+                    else if (lword.length > 8 && lword.match(/^((j|a|k|h|l|s|d|ñ)+)j((j|a|k|h|l|s|d|ñ)+)j((j|a|k|h|l|s|d|ñ)*)$/)) {
                          return "jajaja";
                     }
 

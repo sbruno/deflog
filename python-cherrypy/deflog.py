@@ -367,7 +367,7 @@ def desestupidizar(word):
         if len(lword) > 6:
             if re.match(r"^((j|a|k)+)$",lword):
                 return "jajaja"
-            elif len(lword) > 8 and re.match("^((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)j((j|a|k|l|s|d|ñ)+)$",lword):
+            elif len(lword) > 8 and re.match("^((j|a|k|h|l|s|d|ñ)+)j((j|a|k|h|l|s|d|ñ)+)j((j|a|k|h|l|s|d|ñ)*)$",lword):
                 return "jajaja"
 
         return word
