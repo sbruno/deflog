@@ -566,55 +566,55 @@ class Desfotologueador:
         print text
         print unicode(text,'latin-1')
         print words
-        html = '<html xmlns="http://www.w3.org/1999/xhtml">\
-<head>\
-<meta http-equiv="Content-Language" content="es"/>\
-<meta name="description" content="Traducir texto en idioma fotolog, sms, etc a espa&ntilde;ol legible"/>\
-<meta name="keywords" content="flog flogger floggers fotolog sms traductor translator"/>\
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />\
-<link type="text/css" href="desfotologuear.css" rel="stylesheet" />\
-\
-<title>Desfotologueador</title>\
-</head>\
-\
-<body>\
-<div align="right" style="font-size: medium; font-family: arial,sans-serif; width:100%">\
-    <span style="font-size: 84%;">\
-    <a href="#" onclick="alert(\'CLP!!!!\');" >Ayuda</a>\
-    </span>\
-    </div>\
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-size: medium;">\
-    <tr>\
-    <td width="1%" height="62">\
-    <img width="150" height="62" border="0" style="margin: 0pt 4px 0pt 0pt;" src="deflog.gif" alt="Deflog"/>\
-    </td>\
-    <td width="100%" align="right">\
-    </td>\
-    </tr>\
-    </table>\
-\
-    <h4>Desfotologuear texto:</h4>\
-    <form action="index" method="post" name="form1" id="form1">\
-\
-        <table id="texttable">\
-        <tr>\
-            <td id="original_text" colspan="2">\
-            Texto Original:\
-            </td>\
-            <td id="autotrans">\
-            Texto Traducido:\
-            </td>\
-        </tr>\
-        <tr valign="top">\
-            <td id="sourcecell">\
-                <textarea id="source" name="text">' + text + '</textarea>\
-            </td>\
-            <td id="gap">\
-                &nbsp;\
-            </td>\
-            <td class="almost_half_cell">\
-            <div id="result_box" dir="ltr">\
-'
+        html = """<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Language" content="es"/>
+<meta name="description" content="Traducir texto en idioma fotolog, sms, etc a espa&ntilde;ol legible"/>
+<meta name="keywords" content="flog flogger floggers fotolog sms traductor translator"/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link type="text/css" href="desfotologuear.css" rel="stylesheet" />
+
+<title>Traductor de lenguaje flogger, sms, etc a Español (Desfotologueador)</title>
+</head>
+
+<body>
+<div align="right" style="font-size: medium; font-family: arial,sans-serif; width:100%">
+    <span style="font-size: 84%;">
+    <a href="#" onclick="alert(\'CLP!!!!\');" >Ayuda</a>
+    </span>
+    </div>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-size: medium;">
+    <tr>
+    <td width="1%" height="62">
+    <img width="150" height="62" border="0" style="margin: 0pt 4px 0pt 0pt;" src="deflog.gif" alt="Deflog"/>
+    </td>
+    <td width="100%" align="right">
+    </td>
+    </tr>
+    </table>
+
+    <h4>Desfotologuear texto:</h4>
+    <form action="index" method="post" name="form1" id="form1">
+
+        <table id="texttable">
+        <tr>
+            <td id="original_text" colspan="2">
+            Texto Original:
+            </td>
+            <td id="autotrans">
+            Texto Traducido:
+            </td>
+        </tr>
+        <tr valign="top">
+            <td id="sourcecell">
+                <textarea id="source" name="text">""" + text + """</textarea>
+            </td>
+            <td id="gap">
+                &nbsp;
+            </td>
+            <td class="almost_half_cell">
+            <div id="result_box" dir="ltr">
+"""
         if words:
             words = map(tohtml, words)
             if deleetval == 'on':
@@ -636,205 +636,204 @@ class Desfotologueador:
             if fixmissingvowelsval == 'on':
                 words = map(fixmissingvowels, words)
             html += "".join( [ w for w in words] ) 
-        html += '</div></td>\
-        </tr>\
-        \
-        <tr>\
-            <td id="submitcell">\
-                <table>\
-\
-                <tr>\
-\
-                <td id="selectcell">\
-                    <select name="langpair">\
-                        <option value="flog|es">Fotolog a Espa&ntilde;ol</option>\
-                    </select>\
-                </td>\
-                <td>\
-                    <input type="submit" value="Traducir"/>\
-                </td>\
-\
-                </tr>\
-\
-                <tr>\
-                <td class="select_metodos_title"> M&eacute;todos a aplicar al texto:</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Desmultiplicar</td>\
-                <td><input type="radio" name="desmultiplicarval" value="on" ' + desmultiplicar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="desmultiplicarval" value="off" ' + desmultiplicar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Deszezear</td>\
-                <td><input type="radio" name="deszezearval" value="on" ' + deszezear_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="deszezearval" value="off" ' + deszezear_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Des-k-ar</td>\
-                <td><input type="radio" name="deskarval" value="on" ' + deskar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="deskarval" value="off" ' + deskar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>DesSMSar</td>\
-                <td><input type="radio" name="desmsarval" value="on" ' + desmsar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="desmsarval" value="off" ' + desmsar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Desestupidizar</td>\
-                <td><input type="radio" name="desestupidizarval" value="on" ' + desestupidizar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="desestupidizarval" value="off" ' + desestupidizar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Desalternar</td>\
-                <td><input type="radio" name="desalternarval" value="on" ' + desalternar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="desalternarval" value="off" ' + desalternar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Desporteñar</td>\
-                <td><input type="radio" name="desporteniarval" value="on" ' + desporteniar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="desporteniarval" value="off" ' + desporteniar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Deleet</td>\
-                <td><input type="radio" name="deleetval" value="on" ' + deleet_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="deleetval" value="off" ' + deleet_checked_no + ' > No</td>\
-                </tr>\
-\
-\
-                <tr>\
-                <td>Fix missing vowels</td>\
-                <td><input type="radio" name="fixmissingvowelsval" value="on" ' + fixmissingvowels_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="fixmissingvowelsval" value="off" ' + fixmissingvowels_checked_no + ' > No</td>\
-                </tr>\
-\
-\
-                </table>\
-            </td>\
-\
-            <td>\
-            </td>\
-\
-            <td align="right">\
-            <span id="zippyspan" onclick="alert(\'SS 1 BLD!!!!\');" style="visibility: visible;">\
-            <img style="margin-right: 0.33em;" src="icono_mas.gif" alt="Sugerir mejor traducci&oacute;n"/>Proponer una traducci&oacute;n mejor\
-            </span>\
-            </td>\
-        </tr>\
-    \
-    \
-        </table>\
-    </form>\
-\
-<h4>Traducir una p&aacute;gina web</h4>\
-<form id="web_form" action="/translate">\
-    <table id="webtable">\
-        <tbody>\
-            <tr>\
-                <td width="100%">\
-                    <input type="text" tabindex="0" dir="ltr" value="http://" id="url" name="u"/>\
-                </td>\
-            </tr>\
-            <tr>\
-            <td id="submitcell">\
-                <table>\
-\
-                <tr>\
-\
-                <td id="selectcell">\
-                    <select name="langpair">\
-                        <option value="flog|es">Fotolog a Espa&ntilde;ol</option>\
-                    </select>\
-                </td>\
-                <td>\
-                    <input type="submit" value="Traducir"/>\
-                </td>\
-\
-                </tr>\
-\
-                <tr>\
-                <td class="select_metodos_title"> M&eacute;todos a aplicar al texto:</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Desmultiplicar</td>\
-                <td><input type="radio" name="desmultiplicarval" value="on" ' + desmultiplicar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="desmultiplicarval" value="off" ' + desmultiplicar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Deszezear</td>\
-                <td><input type="radio" name="deszezearval" value="on" ' + deszezear_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="deszezearval" value="off" ' + deszezear_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Des-k-ar</td>\
-                <td><input type="radio" name="deskarval" value="on" ' + deskar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="deskarval" value="off" ' + deskar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>DesSMSar</td>\
-                <td><input type="radio" name="desmsarval" value="on" ' + desmsar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="desmsarval" value="off" ' + desmsar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Desestupidizar</td>\
-                <td><input type="radio" name="desestupidizarval" value="on" ' + desestupidizar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="desestupidizarval" value="off" ' + desestupidizar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Desalternar</td>\
-                <td><input type="radio" name="desalternarval" value="on" ' + desalternar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="desalternarval" value="off" ' + desalternar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Desporteñar</td>\
-                <td><input type="radio" name="desporteniarval" value="on" ' + desporteniar_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="desporteniarval" value="off" ' + desporteniar_checked_no + ' > No</td>\
-                </tr>\
-\
-                <tr>\
-                <td>Deleet</td>\
-                <td><input type="radio" name="deleetval" value="on" ' + deleet_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="deleetval" value="off" ' + deleet_checked_no + ' > No</td>\
-                </tr>\
-\
-\
-                <tr>\
-                <td>Fix missing vowels</td>\
-                <td><input type="radio" name="fixmissingvowelsval" value="on" ' + fixmissingvowels_checked_yes + ' > Si</td>\
-                <td><input type="radio" name="fixmissingvowelsval" value="off" ' + fixmissingvowels_checked_no + ' > No</td>\
-                </tr>\
-\
-\
-                </table>\
-            </td>\
-\
-            <td>\
-            </td>\
-            </tr>\
-        </tbody>\
-    </table>\
-</form>\
-\
-    <div class="footer">\
-    <a href="http://www.santiagobruno.com.ar/programas.html#deflog">More info on my website</a> - <a href="http://cervezaconlupines.blogspot.com/2008/03/presentando-deflog.html">About This Shit</a> - <a href="index?text=LocURaAAaaA%21%21%21%0D%0Ake+loko+estoooo+mIeRdA%21%21%21%0D%0A%0D%0AAaAaAAAaaAiiiii++firmeeennnn+leeemmmddoooo%21%21%21%0D%0A%0D%0Anuc+k+pasa+ak.+t+voi+a+ver+dsp.%0D%0Aqe+andes+d+mil%21%21%0D%0AbesOtte%0D%0A%0D%0Aesto+q+m+dijistes+ta+groxo+maallll+grax+xq+m+dijistessss+cdo+lo+vistessssss%0D%0A%0D%0Atoy+reeee+lokooo+blds%21%21%0D%0Aaahhrrreee%0D%0At+qiero%2C+we%2C+chauuuu%21%21%21%0D%0Abss.%0D%0Aazi+ez+ezto%2C+nos+vems%2C+stamos.+dspu%E9s+dcime.+4gu4n73+a77aqu3%0D%0Ajkajkajkaajkajk">Translation Example</a><br/><br/>This site is not affiliated with Google and is not against floggers or any internet community<br/><br/>©2008 Santiago Bruno</div>\
-\
-</body>\
-</html>'
-                
+        html += """</div></td>
+        </tr>
+
+        <tr>
+            <td id="submitcell">
+                <table>
+
+                <tr>
+
+                <td id="selectcell">
+                    <select name="langpair">
+                        <option value="flog|es">Fotolog a Espa&ntilde;ol</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" value="Traducir"/>
+                </td>
+
+                </tr>
+
+                <tr>
+                <td class="select_metodos_title"> M&eacute;todos a aplicar al texto:</td>
+                </tr>
+
+                <tr>
+                <td>Desmultiplicar</td>
+                <td><input type="radio" name="desmultiplicarval" value="on" ' + desmultiplicar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="desmultiplicarval" value="off" ' + desmultiplicar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Deszezear</td>
+                <td><input type="radio" name="deszezearval" value="on" ' + deszezear_checked_yes + ' > Si</td>
+                <td><input type="radio" name="deszezearval" value="off" ' + deszezear_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Des-k-ar</td>
+                <td><input type="radio" name="deskarval" value="on" ' + deskar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="deskarval" value="off" ' + deskar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>DesSMSar</td>
+                <td><input type="radio" name="desmsarval" value="on" ' + desmsar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="desmsarval" value="off" ' + desmsar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Desestupidizar</td>
+                <td><input type="radio" name="desestupidizarval" value="on" ' + desestupidizar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="desestupidizarval" value="off" ' + desestupidizar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Desalternar</td>
+                <td><input type="radio" name="desalternarval" value="on" ' + desalternar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="desalternarval" value="off" ' + desalternar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Desporteñar</td>
+                <td><input type="radio" name="desporteniarval" value="on" ' + desporteniar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="desporteniarval" value="off" ' + desporteniar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Deleet</td>
+                <td><input type="radio" name="deleetval" value="on" ' + deleet_checked_yes + ' > Si</td>
+                <td><input type="radio" name="deleetval" value="off" ' + deleet_checked_no + ' > No</td>
+                </tr>
+
+
+                <tr>
+                <td>Fix missing vowels</td>
+                <td><input type="radio" name="fixmissingvowelsval" value="on" ' + fixmissingvowels_checked_yes + ' > Si</td>
+                <td><input type="radio" name="fixmissingvowelsval" value="off" ' + fixmissingvowels_checked_no + ' > No</td>
+                </tr>
+
+
+                </table>
+            </td>
+
+            <td>
+            </td>
+
+            <td align="right">
+            <span id="zippyspan" onclick="alert(\'SS 1 BLD!!!!\');" style="visibility: visible;">
+            <img style="margin-right: 0.33em;" src="icono_mas.gif" alt="Sugerir mejor traducci&oacute;n"/>Proponer una traducci&oacute;n mejor
+            </span>
+            </td>
+        </tr>
+
+        </table>
+    </form>
+
+<h4>Traducir una p&aacute;gina web</h4>
+<form id="web_form" action="/translate">
+    <table id="webtable">
+        <tbody>
+            <tr>
+                <td width="100%">
+                    <input type="text" tabindex="0" dir="ltr" value="http://" id="url" name="u"/>
+                </td>
+            </tr>
+            <tr>
+            <td id="submitcell">
+                <table>
+
+                <tr>
+
+                <td id="selectcell">
+                    <select name="langpair">
+                        <option value="flog|es">Fotolog a Espa&ntilde;ol</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" value="Traducir"/>
+                </td>
+
+                </tr>
+
+                <tr>
+                <td class="select_metodos_title"> M&eacute;todos a aplicar al texto:</td>
+                </tr>
+
+                <tr>
+                <td>Desmultiplicar</td>
+                <td><input type="radio" name="desmultiplicarval" value="on" ' + desmultiplicar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="desmultiplicarval" value="off" ' + desmultiplicar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Deszezear</td>
+                <td><input type="radio" name="deszezearval" value="on" ' + deszezear_checked_yes + ' > Si</td>
+                <td><input type="radio" name="deszezearval" value="off" ' + deszezear_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Des-k-ar</td>
+                <td><input type="radio" name="deskarval" value="on" ' + deskar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="deskarval" value="off" ' + deskar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>DesSMSar</td>
+                <td><input type="radio" name="desmsarval" value="on" ' + desmsar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="desmsarval" value="off" ' + desmsar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Desestupidizar</td>
+                <td><input type="radio" name="desestupidizarval" value="on" ' + desestupidizar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="desestupidizarval" value="off" ' + desestupidizar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Desalternar</td>
+                <td><input type="radio" name="desalternarval" value="on" ' + desalternar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="desalternarval" value="off" ' + desalternar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Desporteñar</td>
+                <td><input type="radio" name="desporteniarval" value="on" ' + desporteniar_checked_yes + ' > Si</td>
+                <td><input type="radio" name="desporteniarval" value="off" ' + desporteniar_checked_no + ' > No</td>
+                </tr>
+
+                <tr>
+                <td>Deleet</td>
+                <td><input type="radio" name="deleetval" value="on" ' + deleet_checked_yes + ' > Si</td>
+                <td><input type="radio" name="deleetval" value="off" ' + deleet_checked_no + ' > No</td>
+                </tr>
+
+
+                <tr>
+                <td>Fix missing vowels</td>
+                <td><input type="radio" name="fixmissingvowelsval" value="on" ' + fixmissingvowels_checked_yes + ' > Si</td>
+                <td><input type="radio" name="fixmissingvowelsval" value="off" ' + fixmissingvowels_checked_no + ' > No</td>
+                </tr>
+
+
+                </table>
+            </td>
+
+            <td>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+    <div class="footer">
+    <a href="http://www.santiagobruno.com.ar/programas.html#deflog">More info on my website</a> - <a href="http://cervezaconlupines.blogspot.com/2008/03/presentando-deflog.html">About This Shit</a> - <a href="index?text=LocURaAAaaA%21%21%21%0D%0Ake+loko+estoooo+mIeRdA%21%21%21%0D%0A%0D%0AAaAaAAAaaAiiiii++firmeeennnn+leeemmmddoooo%21%21%21%0D%0A%0D%0Anuc+k+pasa+ak.+t+voi+a+ver+dsp.%0D%0Aqe+andes+d+mil%21%21%0D%0AbesOtte%0D%0A%0D%0Aesto+q+m+dijistes+ta+groxo+maallll+grax+xq+m+dijistessss+cdo+lo+vistessssss%0D%0A%0D%0Atoy+reeee+lokooo+blds%21%21%0D%0Aaahhrrreee%0D%0At+qiero%2C+we%2C+chauuuu%21%21%21%0D%0Abss.%0D%0Aazi+ez+ezto%2C+nos+vems%2C+stamos.+dspu%E9s+dcime.+4gu4n73+a77aqu3%0D%0Ajkajkajkaajkajk">Translation Example</a><br/><br/>This site is not affiliated with Google and is not against floggers or any internet community<br/><br/>©2008 Santiago Bruno</div>
+
+</body>
+</html>"""
+
         return html
 
 
