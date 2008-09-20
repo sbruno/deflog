@@ -377,7 +377,7 @@ def desk(word):
     vocales = ['a', 'e', 'i', 'o','u']
 
     lword = word.lower()
-    
+
     if lword == 'ok':
         return word
     
@@ -385,24 +385,18 @@ def desk(word):
         if a in lword:
             return word
     
-    
     if "ki" in lword:
-        lword.replace('ki', 'qui')
-        word = lword
+        word = word.lower().replace('ki', 'qui')
     
-    if "ke" in lword:
-        lword.replace('ke', 'que')
-        word = lword
+    if "ke" in word:
+        word = word.lower().replace('ke', 'que')
 
-    if len(lword) > 2 and lword[0] == 'k' and lword[1] not in vocales:
-        lword = "ka" + lword[1:]
-        word = lword
-    
+    if len(word) > 2 and word[0].lower() == 'k' and word[1].lower() not in vocales:
+        word = "ka" + word[1:].lower()
     
     word = word.replace('k','c')
     word = word.replace('K','C')
     return word
-
 
 
 def desporteniar(word):
@@ -557,15 +551,9 @@ class Desfotologueador:
         else:
             fixmissingvowels_checked_yes = ''
             fixmissingvowels_checked_no = 'CHECKED'
-            
-            
-        #words = re.split(r"(([\w]|"+unicode_chars+")+)",text)
-        # $words = preg_split("/([\w\dΓ‘Γ©Γ­Γ³ΓΊΓ±+]+)/", dessimbolizar($text), -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-
+        
         words = re.split(u"([\\w\\dαινσϊρ+]+)",dessimbolizar(text))
-        print text
-        print unicode(text,'latin-1')
-        print words
+        
         html = """<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Language" content="es"/>
