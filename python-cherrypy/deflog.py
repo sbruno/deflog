@@ -223,7 +223,7 @@ def desms(word):
                     'xqe': 'porque'
                     }
 
-    if translations.has_key(word.lower()):
+    if word.lower() in translations:
         return translations[word.lower()]
     else:
         lword = word.lower()
@@ -348,7 +348,7 @@ def desestupidizar(word):
                     'xfa': 'por favor'
                    }
 
-    if translations.has_key(word.lower()):
+    if word.lower() in translations:
         return translations[word.lower()]
     else:
         lword = word.lower()
@@ -650,57 +650,57 @@ class Desfotologueador:
 
                 <tr>
                 <td>Desmultiplicar</td>
-                <td><input type="radio" name="desmultiplicarval" value="on" ' + desmultiplicar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="desmultiplicarval" value="off" ' + desmultiplicar_checked_no + ' > No</td>
+                <td><input type="radio" name="desmultiplicarval" value="on" """ + desmultiplicar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="desmultiplicarval" value="off" """ + desmultiplicar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Deszezear</td>
-                <td><input type="radio" name="deszezearval" value="on" ' + deszezear_checked_yes + ' > Si</td>
-                <td><input type="radio" name="deszezearval" value="off" ' + deszezear_checked_no + ' > No</td>
+                <td><input type="radio" name="deszezearval" value="on" """ + deszezear_checked_yes + """ > Si</td>
+                <td><input type="radio" name="deszezearval" value="off" """ + deszezear_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Des-k-ar</td>
-                <td><input type="radio" name="deskarval" value="on" ' + deskar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="deskarval" value="off" ' + deskar_checked_no + ' > No</td>
+                <td><input type="radio" name="deskarval" value="on" """ + deskar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="deskarval" value="off" """ + deskar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>DesSMSar</td>
-                <td><input type="radio" name="desmsarval" value="on" ' + desmsar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="desmsarval" value="off" ' + desmsar_checked_no + ' > No</td>
+                <td><input type="radio" name="desmsarval" value="on" """ + desmsar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="desmsarval" value="off" """ + desmsar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Desestupidizar</td>
-                <td><input type="radio" name="desestupidizarval" value="on" ' + desestupidizar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="desestupidizarval" value="off" ' + desestupidizar_checked_no + ' > No</td>
+                <td><input type="radio" name="desestupidizarval" value="on" """ + desestupidizar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="desestupidizarval" value="off" """ + desestupidizar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Desalternar</td>
-                <td><input type="radio" name="desalternarval" value="on" ' + desalternar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="desalternarval" value="off" ' + desalternar_checked_no + ' > No</td>
+                <td><input type="radio" name="desalternarval" value="on" """ + desalternar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="desalternarval" value="off" """ + desalternar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Desporteñar</td>
-                <td><input type="radio" name="desporteniarval" value="on" ' + desporteniar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="desporteniarval" value="off" ' + desporteniar_checked_no + ' > No</td>
+                <td><input type="radio" name="desporteniarval" value="on" """ + desporteniar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="desporteniarval" value="off" """ + desporteniar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Deleet</td>
-                <td><input type="radio" name="deleetval" value="on" ' + deleet_checked_yes + ' > Si</td>
-                <td><input type="radio" name="deleetval" value="off" ' + deleet_checked_no + ' > No</td>
+                <td><input type="radio" name="deleetval" value="on" """ + deleet_checked_yes + """ > Si</td>
+                <td><input type="radio" name="deleetval" value="off" """ + deleet_checked_no + """ > No</td>
                 </tr>
 
 
                 <tr>
                 <td>Fix missing vowels</td>
-                <td><input type="radio" name="fixmissingvowelsval" value="on" ' + fixmissingvowels_checked_yes + ' > Si</td>
-                <td><input type="radio" name="fixmissingvowelsval" value="off" ' + fixmissingvowels_checked_no + ' > No</td>
+                <td><input type="radio" name="fixmissingvowelsval" value="on" """ + fixmissingvowels_checked_yes + """ > Si</td>
+                <td><input type="radio" name="fixmissingvowelsval" value="off" """ + fixmissingvowels_checked_no + """ > No</td>
                 </tr>
 
 
@@ -752,57 +752,57 @@ class Desfotologueador:
 
                 <tr>
                 <td>Desmultiplicar</td>
-                <td><input type="radio" name="desmultiplicarval" value="on" ' + desmultiplicar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="desmultiplicarval" value="off" ' + desmultiplicar_checked_no + ' > No</td>
+                <td><input type="radio" name="desmultiplicarval" value="on" """ + desmultiplicar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="desmultiplicarval" value="off" """ + desmultiplicar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Deszezear</td>
-                <td><input type="radio" name="deszezearval" value="on" ' + deszezear_checked_yes + ' > Si</td>
-                <td><input type="radio" name="deszezearval" value="off" ' + deszezear_checked_no + ' > No</td>
+                <td><input type="radio" name="deszezearval" value="on" """ + deszezear_checked_yes + """ > Si</td>
+                <td><input type="radio" name="deszezearval" value="off" """ + deszezear_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Des-k-ar</td>
-                <td><input type="radio" name="deskarval" value="on" ' + deskar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="deskarval" value="off" ' + deskar_checked_no + ' > No</td>
+                <td><input type="radio" name="deskarval" value="on" """ + deskar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="deskarval" value="off" """ + deskar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>DesSMSar</td>
-                <td><input type="radio" name="desmsarval" value="on" ' + desmsar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="desmsarval" value="off" ' + desmsar_checked_no + ' > No</td>
+                <td><input type="radio" name="desmsarval" value="on" """ + desmsar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="desmsarval" value="off" """ + desmsar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Desestupidizar</td>
-                <td><input type="radio" name="desestupidizarval" value="on" ' + desestupidizar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="desestupidizarval" value="off" ' + desestupidizar_checked_no + ' > No</td>
+                <td><input type="radio" name="desestupidizarval" value="on" """ + desestupidizar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="desestupidizarval" value="off" """ + desestupidizar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Desalternar</td>
-                <td><input type="radio" name="desalternarval" value="on" ' + desalternar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="desalternarval" value="off" ' + desalternar_checked_no + ' > No</td>
+                <td><input type="radio" name="desalternarval" value="on" """ + desalternar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="desalternarval" value="off" """ + desalternar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Desporteñar</td>
-                <td><input type="radio" name="desporteniarval" value="on" ' + desporteniar_checked_yes + ' > Si</td>
-                <td><input type="radio" name="desporteniarval" value="off" ' + desporteniar_checked_no + ' > No</td>
+                <td><input type="radio" name="desporteniarval" value="on" """ + desporteniar_checked_yes + """ > Si</td>
+                <td><input type="radio" name="desporteniarval" value="off" """ + desporteniar_checked_no + """ > No</td>
                 </tr>
 
                 <tr>
                 <td>Deleet</td>
-                <td><input type="radio" name="deleetval" value="on" ' + deleet_checked_yes + ' > Si</td>
-                <td><input type="radio" name="deleetval" value="off" ' + deleet_checked_no + ' > No</td>
+                <td><input type="radio" name="deleetval" value="on" """ + deleet_checked_yes + """ > Si</td>
+                <td><input type="radio" name="deleetval" value="off" """ + deleet_checked_no + """ > No</td>
                 </tr>
 
 
                 <tr>
                 <td>Fix missing vowels</td>
-                <td><input type="radio" name="fixmissingvowelsval" value="on" ' + fixmissingvowels_checked_yes + ' > Si</td>
-                <td><input type="radio" name="fixmissingvowelsval" value="off" ' + fixmissingvowels_checked_no + ' > No</td>
+                <td><input type="radio" name="fixmissingvowelsval" value="on" """ + fixmissingvowels_checked_yes + """ > Si</td>
+                <td><input type="radio" name="fixmissingvowelsval" value="off" """ + fixmissingvowels_checked_no + """ > No</td>
                 </tr>
 
 
