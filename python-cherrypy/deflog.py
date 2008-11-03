@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-1 -*-
 #*********************************************************
-#* DeFlog 2008-05-29                                     *
+#* DeFlog 2008-11-02                                     *
 #* Traduce Fotolog/SMS a español                         *
 #* http://www.santiagobruno.com.ar/programas.html#deflog *
 #* Licencia: GPL v3                                      *
@@ -14,6 +14,13 @@ except ImportError:
     sys.exit("Error importando cherrypy. Comporobar su correcta instalación. http://www.cherrypy.org/")
 import re
 from urllib import urlopen
+from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulStoneSoup
+from BeautifulSoup import NavigableString
+from BeautifulSoup import CData
+from BeautifulSoup import ProcessingInstruction
+from BeautifulSoup import Comment
+from BeautifulSoup import Declaration
 
 def tohtml(word):
     """ \r\n -> <br/> """
@@ -454,6 +461,16 @@ def fixmissingvowels(word):
 
     return word
 
+def traducir(sopa, deleetval, desalternarval, desmultiplicarval, desmsarval, desestupidizarval, deszezearval, deskarval, desporteniarval, fixmissingvowelsval):
+    for c in sopa.contents:
+        if isinstance(c, NavigableString) and not isinstance(c, (CData, ProcessingInstruction, Comment, Declaration)):
+            try:
+                c.replaceWith(unicode(desfotologuear(c.encode('utf-8'), deleetval, desalternarval, desmultiplicarval, desmsarval, desestupidizarval, deszezearval, deskarval, desporteniarval, fixmissingvowelsval), 'utf-8'))
+            except:
+                print "error con %s" % c.encode('utf-8')
+        elif c and not isinstance(c, (CData, ProcessingInstruction, Comment, Declaration)) and c.name not in ('style', 'script'):
+            traducir(c, deleetval, desalternarval, desmultiplicarval, desmsarval, desestupidizarval, deszezearval, deskarval, desporteniarval, fixmissingvowelsval)
+
 
 def desfotologuear(text, deleetval, desalternarval, desmultiplicarval, desmsarval, desestupidizarval, deszezearval, deskarval, desporteniarval, fixmissingvowelsval):
     words = re.split(u"([\\w\\dáéíóúñ+]+)",dessimbolizar(text))
@@ -824,7 +841,6 @@ class Desfotologueador:
 
         return html
 
-
     def translate(self, u = "", desmultiplicarval = 'on', deszezearval = 'off', deskarval = 'off', desmsarval = 'on', desestupidizarval = 'on', desalternarval = 'on',  desporteniarval = 'on', deleetval = "on", fixmissingvowelsval = "on", **kwargs):
 
         try:
@@ -832,54 +848,12 @@ class Desfotologueador:
             archivo = url.read()
         except:
             return ""
-        difmay = 0
-        to_translate = " "
-        tag = ""
-        nottrans = 0
+        
+        soup = BeautifulSoup(archivo, convertEntities=BeautifulStoneSoup.ALL_ENTITIES)
 
-        result = ""
-
-        i = 0
-        while (i < len(archivo)):
-        
-            read = archivo[i]
-        
-            if (difmay == 0 and read != '<' and read != '>'):
-                to_translate += read
-            elif (difmay == 0 and read == '<'):
-                tag = ""
-                if (nottrans == 0):
-                    result += desfotologuear(to_translate, deleetval, desalternarval, desmultiplicarval, desmsarval, desestupidizarval, deszezearval, deskarval, desporteniarval, fixmissingvowelsval)
-                else:
-                    result += to_translate
-
-                to_translate = " "
-                difmay = 1
-                result += read
-            elif (read == '<'):
-                result += read
-                difmay += 1
-                tag = ""
-            elif (read == '>'):
-                result += tag
-                result += read
-                difmay -= 1
-                
-                if (nottrans == 0 and (difmay == 0) and ((tag.startswith("style")) or (tag.startswith("script")))):
-                    nottrans += 1
-                    tag = ""
-                elif ((nottrans > 0) and (difmay == 0) and ((tag.startswith("/style")) or (tag.startswith("/script")))):
-                    nottrans -= 1
-                    tag = ""
-        
-                tag = ""
-        
-            elif (difmay > 0):
-                tag += read
+        traducir(soup, deleetval, desalternarval, desmultiplicarval, desmsarval, desestupidizarval, deszezearval, deskarval, desporteniarval, fixmissingvowelsval)
             
-            i = i + 1
-
-        return result
+        return soup.prettify()
 
 
 
