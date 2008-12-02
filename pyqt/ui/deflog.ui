@@ -1,0 +1,226 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>847</width>
+    <height>757</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Traductor de lenguaje flogger a español (desfotologueador)</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <widget class="QPushButton" name="translateButton" >
+    <property name="geometry" >
+     <rect>
+      <x>375</x>
+      <y>535</y>
+      <width>95</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Traducir</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>806</width>
+      <height>496</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout" >
+     <item>
+      <widget class="QPlainTextEdit" name="originalTextEdit" />
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="translatedTextEdit" />
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>0</y>
+      <width>806</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2" >
+     <item>
+      <widget class="QLabel" name="label_2" >
+       <property name="text" >
+        <string>Texto original:</string>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label" >
+       <property name="text" >
+        <string>Texto traducido:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget" >
+    <property name="geometry" >
+     <rect>
+      <x>30</x>
+      <y>600</y>
+      <width>796</width>
+      <height>106</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout" >
+     <item row="0" column="0" >
+      <widget class="QCheckBox" name="desmultiplicar" >
+       <property name="text" >
+        <string>Desmultiplicar</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" >
+      <widget class="QCheckBox" name="deszezear" >
+       <property name="text" >
+        <string>Deszezear</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" >
+      <widget class="QCheckBox" name="deskar" >
+       <property name="text" >
+        <string>Des-k-ar</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" >
+      <widget class="QCheckBox" name="dessmsar" >
+       <property name="text" >
+        <string>desSMSar</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2" >
+      <widget class="QCheckBox" name="desestupidizar" >
+       <property name="text" >
+        <string>Desestupidizar</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2" >
+      <widget class="QCheckBox" name="desalternar" >
+       <property name="text" >
+        <string>Desalternar</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3" >
+      <widget class="QCheckBox" name="desporteniar" >
+       <property name="text" >
+        <string>Desporteñar</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3" >
+      <widget class="QCheckBox" name="deleet" >
+       <property name="text" >
+        <string>Deleet</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4" >
+      <widget class="QCheckBox" name="fixmissingvowels" >
+       <property name="text" >
+        <string>Fix missing vowels</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_3" >
+    <property name="geometry" >
+     <rect>
+      <x>45</x>
+      <y>575</y>
+      <width>54</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Métodos</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>847</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>translateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>translate()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>419</x>
+     <y>574</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>601</x>
+     <y>593</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>translate()</slot>
+ </slots>
+</ui>
