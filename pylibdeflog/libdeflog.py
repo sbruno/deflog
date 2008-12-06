@@ -7,40 +7,63 @@
 #********************************************************/
 
 import re
+from htmlentitydefs import name2codepoint 
 
-def dessimbolizar(word):
-    word = word.replace('@', 'a')
-    word = word.replace('ª', 'a')
-    word = word.replace('º', 'o')
-    word = word.replace(' = ', ' igual ')
+#<code from http://www.gossamer-threads.com/lists/python/python/623437>
+EntityPattern = re.compile(u'&(?:#(\d+)|(?:#x([\da-fA-F]+))|([a-zA-Z]+));')
+
+def decodeEntities(s, encoding='utf-8'):
+    def unescape(match):
+        code = match.group(1)
+        if code:
+            return unichr(int(code, 10))
+        else:
+            code = match.group(2)
+        if code:
+            return unichr(int(code, 16))
+        else:
+            code = match.group(3)
+        if code in name2codepoint:
+            return unichr(name2codepoint[code])
+        return match.group(0)
+
+    return EntityPattern.sub(unescape, s) 
+#</code from http://www.gossamer-threads.com/lists/python/python/623437>
+
+
+def dessimbolizar(word, format='html'):
+    word = word.replace(u'@', u'a')
+    word = word.replace(u'ª', u'a')
+    word = word.replace(u'º', u'o')
+    word = word.replace(u' = ', u' igual ')
     word = re.sub(r"(\w*?)!(\w)", r"\1i\2", word)
     word = re.sub(r"(\w+?)¡", r"\1i", word)
     return word
 
-def deleet(word):
+def deleet(word, format='html'):
     if not re.match(r"\b\d+\b", word):
-        word = word.replace('0','o')
-        word = word.replace('1','i')
-        word = word.replace('3','e')
-        word = word.replace('4','a')
-        word = word.replace('5','s')
-        word = word.replace('7','t')
+        word = word.replace(u'0',u'o')
+        word = word.replace(u'1',u'i')
+        word = word.replace(u'3',u'e')
+        word = word.replace(u'4',u'a')
+        word = word.replace(u'5',u's')
+        word = word.replace(u'7',u't')
     return word
 
-def desalternar(word):
+def desalternar(word, format='html'):
     """
     Convierte palabras con mayusculas y minusculas alternadas a minusculas
     
-    >>> desalternar("hola")
-    'hola'
-    >>> desalternar("Hola")
-    'Hola'
-    >>> desalternar("HOLA")
-    'HOLA'
-    >>> desalternar("HoLa")
-    'hola'
-    >>> desalternar("hOlA")
-    'hola'
+    >>> desalternar(u"hola")
+    u'hola'
+    >>> desalternar(u"Hola")
+    u'Hola'
+    >>> desalternar(u"HOLA")
+    u'HOLA'
+    >>> desalternar(u"HoLa")
+    u'hola'
+    >>> desalternar(u"hOlA")
+    u'hola'
     """
     
     if word.isupper() or word.islower() or word.istitle():
@@ -49,63 +72,63 @@ def desalternar(word):
         return word.lower()
 
 
-def desmultiplicar(word):
+def desmultiplicar(word, format='html'):
     """
     Elimina las repeticiones de letras
     
-    >>> desmultiplicar("hola")
-    'hola'
-    >>> desmultiplicar("holaaaaaaa")
-    'hola'
-    >>> desmultiplicar("holaa")
-    'hola'
-    >>> desmultiplicar("hhhhoooooollllaaaaa")
-    'hola'
-    >>> desmultiplicar("millones")
-    'millones'
-    >>> desmultiplicar("aburrido")
-    'aburrido'
-    >>> desmultiplicar("www")
-    'www'
+    >>> desmultiplicar(u"hola")
+    u'hola'
+    >>> desmultiplicar(u"holaaaaaaa")
+    u'hola'
+    >>> desmultiplicar(u"holaa")
+    u'hola'
+    >>> desmultiplicar(u"hhhhoooooollllaaaaa")
+    u'hola'
+    >>> desmultiplicar(u"millones")
+    u'millones'
+    >>> desmultiplicar(u"aburrido")
+    u'aburrido'
+    >>> desmultiplicar(u"www")
+    u'www'
     """
 
-    exceptions = ['http','www','://', 'ss', 'ppio', 'ff', 'bb', 'kiss']
+    exceptions = [u'http',u'www',u'://', u'ss', u'ppio', u'ff', u'bb', u'kiss']
 
     lword = word.lower()
 
     if re.match(r"^bs[s]+$",lword):
-        return 'besos'
+        return u'besos'
 
     if re.match(r"^mm[m]+[h]*$",lword):
-        return 'mmmh'
+        return u'mmmh'
 
     if re.match(r"^aa[a]+[h]*$",lword):
-        return 'aaah'
+        return u'aaah'
 
     if re.match(r"^ba[a]+[h]*$",lword):
-        return 'baaah'
+        return u'baaah'
 
     if re.match(r"^bu[u]+[h]*$",lword):
-        return 'buuu'
+        return u'buuu'
     
-    if not lword in exceptions and lword[:3] != '...' :
+    if not lword in exceptions and lword[:3] != u'...' :
         if re.match(r"(^|[^l]+)[l][l]([^l])+",lword):
-            pos = lword.index('ll')
-            return desmultiplicar(lword[:pos]) + 'll' + desmultiplicar(lword[pos+2:])
+            pos = lword.index(u'll')
+            return desmultiplicar(lword[:pos]) + u'll' + desmultiplicar(lword[pos+2:])
 
         if re.match(r"([^r])+[r][r]([^r])+",lword):
-            pos = lword.index('rr')
-            return desmultiplicar(lword[:pos]) + 'rr' + desmultiplicar(lword[pos+2:])
+            pos = lword.index(u'rr')
+            return desmultiplicar(lword[:pos]) + u'rr' + desmultiplicar(lword[pos+2:])
 
         ##Los dos casos siguientes se pueden sacar si no se esperan muchas
         ##palabras en inglés. Sirve para pasar google, good, teen, etc
         if re.match(r"([^o])+[o][o]([^o])+",lword):
-            pos = lword.index('oo')
-            return desmultiplicar(lword[:pos]) + 'oo' + desmultiplicar(lword[pos+2:])
+            pos = lword.index(u'oo')
+            return desmultiplicar(lword[:pos]) + u'oo' + desmultiplicar(lword[pos+2:])
         
         if re.match(r"([^e])+[e][e]([^e])+",lword):
-            pos = lword.index('ee')
-            return desmultiplicar(lword[:pos]) + 'ee' + desmultiplicar(lword[pos+2:])
+            pos = lword.index(u'ee')
+            return desmultiplicar(lword[:pos]) + u'ee' + desmultiplicar(lword[pos+2:])
 
         return re.sub(r'(.)\1+',r'\1',word)
     else:
@@ -113,290 +136,322 @@ def desmultiplicar(word):
     
     
     
-def desms(word):
+def desms(word, format='html'):
     """
     Reemplaza algunas abreviaturas tipicas del sms
-    >>> desms('porke')
-    'porque'
-    >>> desms('pq')
-    'porque'
-    >>> desms('xq')
-    'porque'
-    >>> desms('porqe')
-    'porque'
+    Con el formato plain, reemplaza las entidades html
+
+    >>> desms(u'porke')
+    u'porque'
+    >>> desms(u'pq')
+    u'porque'
+    >>> desms(u'xq')
+    u'porque'
+    >>> desms(u'porqe')
+    u'porque'
+    >>> desms(u'ak')
+    u'ac&aacute;'
+    >>> desms(u'ak', format='html')
+    u'ac&aacute;'
+    >>> #no se como hacer que este pase
+    >>> desms(u'ak', format='plain')
+    u'ac\xe1'
     """
     
-    translations = {'+': 'm&aacute;s',
-                    '+a': 'masa',
-                    'ad+': 'adem&aacute;s',
-                    'ak': 'ac&aacute;',
-                    'asc': 'al salir de clase',
-                    'asdc': 'al salir de clase',
-                    'bb': 'beb&eacute;',
-                    'bld': 'boludo',
-                    'blds': 'boludos',
-                    'bn': 'bien',
-                    'bno': 'bueno',
-                    'bss': 'besos',
-                    'c': 'se',
-                    'cdo': 'cuando',
-                    'cel': 'celular',
-                    'clp': 'chupame la pija',
-                    'cmo': 'como',
-                    'd': 'de',
-                    'dle': 'dale',
-                    'dnd': 'donde',
-                    'dsd': 'desde',
-                    'dsp': 'despu&eacute;s',
-                    'flia': 'familia',
-                    'fto': 'foto',
-                    'hdp': 'hijo de puta',
-                    'hexo': 'hecho',
-                    'hlqp': 'hacemos lo que podemos',
-                    'hna': 'hermana',
-                    'hno': 'hermano',
-                    'hsta': 'hasta',
-                    'k': 'que',
-                    'kpo': 'capo',
-                    'ksa': 'casa',
-                    'lpm': 'la puta madre',
-                    'lpmqtp': 'la puta madre que te pari&oacute;',
-                    'lpqtp': 'la puta que te pari&oacute;',
-                    'm': 'me',
-                    'mjor': 'mejor',
-                    'mjr': 'mejor',
-                    'msj': 'mensaje',
-                    'n': 'en',
-                    'nd': 'nada',
-                    'nxe': 'noche',
-                    'ppio': 'principio',
-                    'pq': 'porque',
-                    'ps': 'pues',
-                    'pso': 'paso',
-                    'pt': 'pete',
-                    'q': 'que',
-                    'qn': 'quien',
-                    'salu2': 'saludos',
-                    'ss': 'sos',
-                    'sta': 'est&aacute;',
-                    'stan': 'est&aacute;n',
-                    'stamos': 'estamos',
-                    'stes': 'est&eacute;s',
-                    't': 'te',
-                    'tas': 'est&aacute;s',
-                    'tb': 'tambi&eacute;n',
-                    'tbj': 'trabajo',
-                    'tbn': 'tambi&eacute;n',
-                    'tdo': 'todo',
-                    'tdos': 'todos',
-                    'tds': 'todos',
-                    'tgo': 'tengo',
-                    'tkm': 'te quiero mucho',
-                    'tmb': 'tambi&eacute;n',
-                    'tmbn': 'tambi&eacute;n',
-                    'tmp': 'tampoco',
-                    'tngo': 'tengo',
-                    'tp': 'tampoco',
-                    'toy': 'estoy',
-                    'tk': 'te quiero',
-                    'tq': 'te quiero',
-                    'vac': 'vacaciones',
-                    'vr': 'ver',
-                    'x': 'por',
-                    'xa': 'para',
-                    'xat': 'chat',
-                    'xk': 'porque',
-                    'xke': 'porque',
-                    'xo': 'pero',
-                    'xq': 'porque',
-                    'xqe': 'porque'
+    translations = {u'+': u'm&aacute;s',
+                    u'+a': u'masa',
+                    u'ad+': u'adem&aacute;s',
+                    u'ak': u'ac&aacute;',
+                    u'asc': u'al salir de clase',
+                    u'asdc': u'al salir de clase',
+                    u'bb': u'beb&eacute;',
+                    u'bld': u'boludo',
+                    u'blds': u'boludos',
+                    u'bn': u'bien',
+                    u'bno': u'bueno',
+                    u'bss': u'besos',
+                    u'c': u'se',
+                    u'cdo': u'cuando',
+                    u'cel': u'celular',
+                    u'clp': u'chupame la pija',
+                    u'cmo': u'como',
+                    u'd': u'de',
+                    u'dle': u'dale',
+                    u'dnd': u'donde',
+                    u'dsd': u'desde',
+                    u'dsp': u'despu&eacute;s',
+                    u'flia': u'familia',
+                    u'fto': u'foto',
+                    u'hdp': u'hijo de puta',
+                    u'hexo': u'hecho',
+                    u'hlqp': u'hacemos lo que podemos',
+                    u'hna': u'hermana',
+                    u'hno': u'hermano',
+                    u'hsta': u'hasta',
+                    u'k': u'que',
+                    u'kpo': u'capo',
+                    u'ksa': u'casa',
+                    u'lpm': u'la puta madre',
+                    u'lpmqtp': u'la puta madre que te pari&oacute;',
+                    u'lpqtp': u'la puta que te pari&oacute;',
+                    u'm': u'me',
+                    u'mjor': u'mejor',
+                    u'mjr': u'mejor',
+                    u'msj': u'mensaje',
+                    u'n': u'en',
+                    u'nd': u'nada',
+                    u'nxe': u'noche',
+                    u'ppio': u'principio',
+                    u'pq': u'porque',
+                    u'ps': u'pues',
+                    u'pso': u'paso',
+                    u'pt': u'pete',
+                    u'q': u'que',
+                    u'qn': u'quien',
+                    u'salu2': u'saludos',
+                    u'ss': u'sos',
+                    u'sta': u'est&aacute;',
+                    u'stan': u'est&aacute;n',
+                    u'stamos': u'estamos',
+                    u'stes': u'est&eacute;s',
+                    u't': u'te',
+                    u'tas': u'est&aacute;s',
+                    u'tb': u'tambi&eacute;n',
+                    u'tbj': u'trabajo',
+                    u'tbn': u'tambi&eacute;n',
+                    u'tdo': u'todo',
+                    u'tdos': u'todos',
+                    u'tds': u'todos',
+                    u'tgo': u'tengo',
+                    u'tkm': u'te quiero mucho',
+                    u'tmb': u'tambi&eacute;n',
+                    u'tmbn': u'tambi&eacute;n',
+                    u'tmp': u'tampoco',
+                    u'tngo': u'tengo',
+                    u'tp': u'tampoco',
+                    u'toy': u'estoy',
+                    u'tk': u'te quiero',
+                    u'tq': u'te quiero',
+                    u'vac': u'vacaciones',
+                    u'vr': u'ver',
+                    u'x': u'por',
+                    u'xa': u'para',
+                    u'xat': u'chat',
+                    u'xk': u'porque',
+                    u'xke': u'porque',
+                    u'xo': u'pero',
+                    u'xq': u'porque',
+                    u'xqe': u'porque'
                     }
 
     if word.lower() in translations:
-        return translations[word.lower()]
+        word = translations[word.lower()]
     else:
         lword = word.lower()
-        if 'qe' in lword or 'ke' in lword or 'qi' in lword:
-            lword = lword.replace('qi', 'qui')
-            lword = lword.replace('qe', 'que')
-            lword = lword.replace('ke', 'que')
+        if u'qe' in lword or u'ke' in lword or u'qi' in lword:
+            lword = lword.replace(u'qi', u'qui')
+            lword = lword.replace(u'qe', u'que')
+            lword = lword.replace(u'ke', u'que')
             word = lword
-        if lword.endswith('q') and len(lword) > 2:
-            lword = lword[:-1] + " que"
+        if lword.endswith(u'q') and len(lword) > 2:
+            lword = lword[:-1] + u" que"
             word = lword
-        if lword.endswith('ms') and len(lword) > 3:
-            lword = lword[:-1] + "os"
+        if lword.endswith(u'ms') and len(lword) > 3:
+            lword = lword[:-1] + u"os"
             word = lword
-        if lword.startswith('cn'):
-            lword = "co" + lword[1:]
+        if lword.startswith(u'cn'):
+            lword = u"co" + lword[1:]
             word = lword
-        if lword.startswith('bso'):
-            lword = "be" + lword[1:]
+        if lword.startswith(u'bso'):
+            lword = u"be" + lword[1:]
             word = lword
-        if lword.startswith('bld'):
-            lword = "bolu" + lword[2:]
+        if lword.startswith(u'bld'):
+            lword = u"bolu" + lword[2:]
             word = lword
-        if lword.startswith('efea') and len(lword) > 3:
-            lword = "agrega" + lword[4:] + " a favoritos"
+        if lword.startswith(u'efea') and len(lword) > 3:
+            lword = u"agrega" + lword[4:] + u" a favoritos"
             word = lword
-        if lword.startswith('efen') and len(lword) > 3:
-            lword = "agreguen" + lword[4:] + " a favoritos"
+        if lword.startswith(u'efen') and len(lword) > 3:
+            lword = u"agreguen" + lword[4:] + u" a favoritos"
             word = lword
-        if lword.startswith('mux') and len(lword) > 3:
-            lword = "much" + lword[3:]
+        if lword.startswith(u'mux') and len(lword) > 3:
+            lword = u"much" + lword[3:]
             word = lword
-        
-        return word
 
-def desestupidizar(word):
-    translations = {'10pre': 'siempre',
-                    'arre': '&lt;alguna sensaci&oacute;n&gt;',
-                    'ahrre': '&lt;alguna sensaci&oacute;n&gt;',
-                    'ahre': '&lt;alguna sensaci&oacute;n&gt;',
-                    'ai': 'ah&iacute;/hay/ay',
-                    'aios': 'adi&oacute;s',
-                    'aka': 'ac&aacute;',
-                    'aki': 'aqu&iacute;',
-                    'akí': 'aqu&iacute;',
-                    'anio': 'a&ntilde;o',
-                    'bai': 'bye',
-                    'ben': 'bien',
-                    'bem': 'bien',
-                    'bue': 'bueno',
-                    'bzo': 'beso',
-                    'doi': 'doy',
-                    'efe': 'favorito',
-                    'efeo': 'agrego a mis favoritos',
-                    'efen': 'agreguen a favoritos',
-                    'efes': 'favoritos',
-                    'efs': 'favoritos',
-                    'estoi': 'estoy',
-                    'ff': 'favoritos',
-                    'fs': 'favoritos',
-                    'grax': 'gracias',
-                    'groxo': 'grosso',
-                    'hai': 'hay',
-                    'hoi': 'hoy',
-                    'i': 'y',
-                    'ia': 'ya',
-                    'io': 'yo',
-                    'ise': 'hice',
-                    'iwal': 'igual',
-                    'kmo': 'como',
-                    'kn': 'con',
-                    'oi': 'hoy',
-                    'moy': 'muy',
-                    'muchio': 'mucho',
-                    'mu': 'muy',
-                    'mui': 'muy',
-                    'nah': 'nada',
-                    'nuche': 'no se',
-                    'nus': 'nos',
-                    'nuse': 'no se',
-                    'ola': 'hola',
-                    'olas': 'hola',
-                    'olaz': 'hola',
-                    'pic': 'foto',
-                    'pick': 'foto',
-                    'pik': 'foto',
-                    'plis': 'por favor',
-                    'pliz': 'por favor',
-                    'plz': 'por favor',
-                    'sho': 'yo',
-                    'sip': 'si',
-                    'soi': 'soy',
-                    'stoi': 'estoy',
-                    'sullo': 'suyo',
-                    'ta': 'est&aacute;',
-                    'tawena': 'est&aacute; buena',
-                    'tap': 'top',
-                    'taz': 'est&aacute;s',
-                    'teno': 'tengo',
-                    'toi': 'estoy',
-                    'toos': 'todos',
-                    'tullo': 'tuyo',
-                    'lav': 'love',
-                    'lov': 'love',
-                    'lendo': 'lindo',
-                    'llendo': 'yendo',
-                    'mua': 'besos',
-                    'muak': 'besos',
-                    'muac': 'besos',
-                    'muack': 'besos',
-                    'muto': 'mucho',
-                    'nah': 'nada',
-                    'nu': 'no',
-                    'nueo': 'nuevo',
-                    'nunk': 'nunca',
-                    'nuc': 'no se',
-                    'voi': 'voy',
-                    'we': 'bueno',
-                    'wem': 'bueno',
-                    'wno': 'bueno',
-                    'xau': 'chau',
-                    'xfa': 'por favor'
+    if format == 'plain':
+        word = decodeEntities(word)
+
+    return word
+
+def desestupidizar(word, format='html'):
+    """
+    Corrige algunas estupideces
+    Con el formato plain, reemplaza las entidades html
+
+    >>> desestupidizar(u'soi')
+    u'soy'
+    >>> desestupidizar(u'kajsklklskljasla\xf1aks')
+    u'jajaja'
+    >>> desestupidizar(u'taz')
+    u'est&aacute;s'
+    >>> desestupidizar(u'taz', format='html')
+    u'est&aacute;s'
+    >>> #no se como hacer que este pase
+    >>> desestupidizar(u'taz', format='plain')
+    u'est\xe1s'
+    """
+    translations = {u'10pre': u'siempre',
+                    u'arre': u'&lt;alguna sensaci&oacute;n&gt;',
+                    u'ahrre': u'&lt;alguna sensaci&oacute;n&gt;',
+                    u'ahre': u'&lt;alguna sensaci&oacute;n&gt;',
+                    u'ai': u'ah&iacute;/hay/ay',
+                    u'aios': u'adi&oacute;s',
+                    u'aka': u'ac&aacute;',
+                    u'aki': u'aqu&iacute;',
+                    u'akí': u'aqu&iacute;',
+                    u'anio': u'a&ntilde;o',
+                    u'bai': u'bye',
+                    u'ben': u'bien',
+                    u'bem': u'bien',
+                    u'bue': u'bueno',
+                    u'bzo': u'beso',
+                    u'doi': u'doy',
+                    u'efe': u'favorito',
+                    u'efeo': u'agrego a mis favoritos',
+                    u'efen': u'agreguen a favoritos',
+                    u'efes': u'favoritos',
+                    u'efs': u'favoritos',
+                    u'estoi': u'estoy',
+                    u'ff': u'favoritos',
+                    u'fs': u'favoritos',
+                    u'grax': u'gracias',
+                    u'groxo': u'grosso',
+                    u'hai': u'hay',
+                    u'hoi': u'hoy',
+                    u'i': u'y',
+                    u'ia': u'ya',
+                    u'io': u'yo',
+                    u'ise': u'hice',
+                    u'iwal': u'igual',
+                    u'kmo': u'como',
+                    u'kn': u'con',
+                    u'oi': u'hoy',
+                    u'moy': u'muy',
+                    u'muchio': u'mucho',
+                    u'mu': u'muy',
+                    u'mui': u'muy',
+                    u'nah': u'nada',
+                    u'nuche': u'no se',
+                    u'nus': u'nos',
+                    u'nuse': u'no se',
+                    u'ola': u'hola',
+                    u'olas': u'hola',
+                    u'olaz': u'hola',
+                    u'pic': u'foto',
+                    u'pick': u'foto',
+                    u'pik': u'foto',
+                    u'plis': u'por favor',
+                    u'pliz': u'por favor',
+                    u'plz': u'por favor',
+                    u'sho': u'yo',
+                    u'sip': u'si',
+                    u'soi': u'soy',
+                    u'stoi': u'estoy',
+                    u'sullo': u'suyo',
+                    u'ta': u'est&aacute;',
+                    u'tawena': u'est&aacute; buena',
+                    u'tap': u'top',
+                    u'taz': u'est&aacute;s',
+                    u'teno': u'tengo',
+                    u'toi': u'estoy',
+                    u'toos': u'todos',
+                    u'tullo': u'tuyo',
+                    u'lav': u'love',
+                    u'lov': u'love',
+                    u'lendo': u'lindo',
+                    u'llendo': u'yendo',
+                    u'mua': u'besos',
+                    u'muak': u'besos',
+                    u'muac': u'besos',
+                    u'muack': u'besos',
+                    u'muto': u'mucho',
+                    u'nah': u'nada',
+                    u'nu': u'no',
+                    u'nueo': u'nuevo',
+                    u'nunk': u'nunca',
+                    u'nuc': u'no se',
+                    u'voi': u'voy',
+                    u'we': u'bueno',
+                    u'wem': u'bueno',
+                    u'wno': u'bueno',
+                    u'xau': u'chau',
+                    u'xfa': u'por favor'
                    }
 
+    lword = word.lower()
+    if u'emd' in lword:
+        word = lword.replace(u'emd', u'ind')
+    if u'md' in lword:
+        word = lword.replace(u'md', u'nd')
+    if re.match(r'^[i]+$',lword):
+        word = u'y'
+    if len(lword) > 2 and lword[:3] == u'wen':
+        word = u"buen" + lword[3:]
+    if len(lword) > 2 and lword[:3] == u'oka':
+        word = u"ok"
+
+    #posible risa
+    if len(lword) > 6:
+        if re.match(u"^((j|a|k)+)$",lword):
+            return u"jajaja"
+        elif len(lword) > 8 and re.match(u"^((j|a|k|h|l|s|d|ñ)+)j((j|a|k|h|l|s|d|ñ)+)j((j|a|k|h|l|s|d|ñ)*)$",lword):
+            return u"jajaja"
+
+
     if word.lower() in translations:
-        return translations[word.lower()]
-    else:
-        lword = word.lower()
-        if 'emd' in lword:
-            word = lword.replace('emd', 'ind')
-        if 'md' in lword:
-            word = lword.replace('md', 'nd')
-        if re.match(r'^[i]+$',lword):
-            word = 'y'
-        if len(lword) > 2 and lword[:3] == 'wen':
-            word = "buen" + lword[3:]
-        if len(lword) > 2 and lword[:3] == 'oka':
-            word = "ok"
+        word = translations[word.lower()]
 
-        #posible risa
-        if len(lword) > 6:
-            if re.match(r"^((j|a|k)+)$",lword):
-                return "jajaja"
-            elif len(lword) > 8 and re.match("^((j|a|k|h|l|s|d|ñ)+)j((j|a|k|h|l|s|d|ñ)+)j((j|a|k|h|l|s|d|ñ)*)$",lword):
-                return "jajaja"
+    if format == 'plain':
+        word = decodeEntities(word)
 
-        return word
+    return word
 
-def desk(word):
-    exceptions = ['kiosco', 'kilo', 'kiló', 'fuck', 'punk', 'rock', 'look', 'kiss']
-    vocales = ['a', 'e', 'i', 'o','u']
+def desk(word, format='html'):
+    exceptions = [u'kiosco', u'kilo', u'kiló', u'fuck', u'punk', u'rock', u'look', u'kiss']
+    vocales = [u'a', u'e', u'i', u'o',u'u']
 
     lword = word.lower()
 
-    if lword == 'ok':
+    if lword == u'ok':
         return word
     
     for a in exceptions:
         if a in lword:
             return word
     
-    if "ki" in lword:
-        word = word.lower().replace('ki', 'qui')
+    if u"ki" in lword:
+        word = word.lower().replace(u'ki', u'qui')
     
-    if "ke" in word:
-        word = word.lower().replace('ke', 'que')
+    if u"ke" in word:
+        word = word.lower().replace(u'ke', u'que')
 
-    if len(word) > 2 and word[0].lower() == 'k' and word[1].lower() not in vocales:
-        word = "ka" + word[1:].lower()
+    if len(word) > 2 and word[0].lower() == u'k' and word[1].lower() not in vocales:
+        word = u"ka" + word[1:].lower()
     
-    word = word.replace('k','c')
-    word = word.replace('K','C')
+    word = word.replace(u'k',u'c')
+    word = word.replace(u'K',u'C')
     return word
 
 
-def desporteniar(word):
+def desporteniar(word, format='html'):
     lword = word.lower()
-    if len(lword) > 5 and lword[-4:] == 'stes':
+    if len(lword) > 5 and lword[-4:] == u'stes':
         word = lword[:-1]
     return word
 
 
-def deszezear(word):
-    exceptions = ['arroz', 'feliz', 'zorr', 'azul', 'azucar', 'azúcar', 'conoz', 'zapa']
+def deszezear(word, format='html'):
+    exceptions = [u'arroz', u'feliz', u'zorr', u'azul', u'azucar', u'azúcar', u'conoz', u'zapa']
 
     lword = word.lower()
     
@@ -404,41 +459,49 @@ def deszezear(word):
         if a in lword:
             return word
     
-    word = word.replace('z','s')
-    word = word.replace('Z','S')
+    word = word.replace(u'z',u's')
+    word = word.replace(u'Z',u'S')
     return word
 
 
-def fixmissingvowels(word):
-    exceptions = ['get', 'cat', 'that', 'best', 'post', 'net', 'chat']
-    vocales = ['a', 'e', 'i', 'o','u']
-    followsd = ['a', 'e', 'i', 'o','u', 'r', 'h', 'y']
+def fixmissingvowels(word, format='html'):
+    exceptions = [u'get', u'cat', u'that', u'best', u'post', u'net', u'chat']
+    vocales = [u'a', u'e', u'i', u'o',u'u']
+    followsd = [u'a', u'e', u'i', u'o',u'u', u'r', u'h', u'y']
 
     lword = word.lower()
     if not lword in exceptions:
-        if len(lword) > 1 and lword[0] == 'n' and not lword[1] in vocales:
-            lword = "en" + lword[1:]
+        if len(lword) > 1 and lword[0] == u'n' and not lword[1] in vocales:
+            lword = u"en" + lword[1:]
             word = lword
         
         wlen = len(word)
-        if wlen > 1 and lword[wlen-1] == 't':
-            lword += 'e'
+        if wlen > 1 and lword[wlen-1] == u't':
+            lword += u'e'
             word = lword
         
-        if len(lword) > 2 and lword[:2] == "vr" and not lword[2] in vocales:
-            lword = "ver" + lword[2:]
+        if len(lword) > 2 and lword[:2] == u"vr" and not lword[2] in vocales:
+            lword = u"ver" + lword[2:]
             word = lword
 
-        if len(lword) > 2 and lword[0] == 'd' and not lword[1] in followsd:
-            lword = "de" + lword[1:]
+        if len(lword) > 2 and lword[0] == u'd' and not lword[1] in followsd:
+            lword = u"de" + lword[1:]
             word = lword
 
-        if len(lword) > 2 and lword[:2] == "sp" and not lword[2] in vocales:
-            lword = "esp" + lword[2:]
+        if len(lword) > 2 and lword[:2] == u"sp" and not lword[2] in vocales:
+            lword = u"esp" + lword[2:]
             word = lword
 
-        if len(lword) > 2 and lword[:2] == "st" and not lword[2] in vocales:
-            lword = "est" + lword[2:]
+        if len(lword) > 2 and lword[:2] == u"st" and not lword[2] in vocales:
+            lword = u"est" + lword[2:]
             word = lword
 
     return word
+
+
+def _test():
+    import doctest
+    doctest.testmod()
+ 
+if __name__ == "__main__":
+    _test()
