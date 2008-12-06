@@ -153,9 +153,9 @@ def desms(word, format='html'):
     u'ac&aacute;'
     >>> desms(u'ak', format='html')
     u'ac&aacute;'
-    >>> #no se como hacer que este pase
-    >>> desms(u'ak', format='plain')
-    u'ac\xe1'
+    >>> #no se como hacer que pase sin hacer esta cosa
+    >>> print desms(u'ak', format='plain').encode('utf-8')
+    ac\xc3\xa1
     """
     
     translations = {u'+': u'm&aacute;s',
@@ -296,9 +296,9 @@ def desestupidizar(word, format='html'):
     u'est&aacute;s'
     >>> desestupidizar(u'taz', format='html')
     u'est&aacute;s'
-    >>> #no se como hacer que este pase
-    >>> desestupidizar(u'taz', format='plain')
-    u'est\xe1s'
+    >>> #no se como hacer que pase sin hacer esta cosa
+    >>> print desestupidizar(u'taz', format='plain').encode('utf-8')
+    est\xc3\xa1s
     """
     translations = {u'10pre': u'siempre',
                     u'arre': u'&lt;alguna sensaci&oacute;n&gt;',
