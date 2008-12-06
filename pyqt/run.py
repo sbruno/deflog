@@ -16,6 +16,7 @@ from ui.deflog import Ui_MainWindow
 
 from pylibdeflog.libdeflog import *
 
+
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def __init__(self, parent=None):
@@ -23,10 +24,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
     def translate(self):
-        text = unicode(self.originalTextEdit.toPlainText()).encode('utf-8')
-        
-        words = re.split(u"([\\w\\dáéíóúñ+]+)",dessimbolizar(text))
-        translated = ""
+        text = unicode(self.originalTextEdit.toPlainText())
+        text = dessimbolizar(text)
+        words_re = re.compile(u"([\\w\\d+]+)", re.UNICODE)
+        words = words_re.split(text)
+        translated = u""
 
         if words:
             if self.deleet.isChecked():
@@ -36,9 +38,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             if self.desmultiplicar.isChecked():
                 words = map(desmultiplicar, words)
             if self.dessmsar.isChecked():
-                words = map(desms, words)
+                words = map(lambda x: desms(x, format='plain'), words)
             if self.desestupidizar.isChecked():
-                words = map(desestupidizar, words)
+                words = map(lambda x: desestupidizar(x, format='plain'), words)
             if self.deszezear.isChecked():
                 words = map(deszezear, words)
             if self.deskar.isChecked():
@@ -47,10 +49,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 words = map(desporteniar, words)
             if self.fixmissingvowels.isChecked():
                 words = map(fixmissingvowels, words)
-            translated += "".join( [ w for w in words] ) 
+            translated += "".join( [ w for w in words] )
 
-        
-        self.translatedTextEdit.setPlainText(translated.decode('utf-8'))
+
+        self.translatedTextEdit.setPlainText(translated)
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
