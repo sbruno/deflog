@@ -76,7 +76,8 @@ def desfotologuear(text, deleetval, desalternarval, desmultiplicarval, desmsarva
 class Desfotologueador:
 
     def index(self, text = "", desmultiplicarval = 'on', deszezearval = 'off', deskarval = 'off', desmsarval = 'on', desestupidizarval = 'on', desalternarval = 'on',  desporteniarval = 'on', deleetval = "on", fixmissingvowelsval = "on", **kwargs):
-        text=unicode(text, 'utf-8')
+
+        text = unicode(text, 'utf-8')
 
         if desmultiplicarval == 'on':
             desmultiplicar_checked_yes = 'CHECKED'
@@ -408,7 +409,7 @@ class Desfotologueador:
 </form>
 
     <div class="footer">
-    <a href="http://www.santiagobruno.com.ar/programas.html#deflog">More info on my website</a> - <a href="http://cervezaconlupines.blogspot.com/2008/03/presentando-deflog.html">About This Shit</a> - <a href="index?text=LocURaAAaaA%21%21%21%0D%0Ake+loko+estoooo+mIeRdA%21%21%21%0D%0A%0D%0AAaAaAAAaaAiiiii++firmeeennnn+leeemmmddoooo%21%21%21%0D%0A%0D%0Anuc+k+pasa+ak.+t+voi+a+ver+dsp.%0D%0Aqe+andes+d+mil%21%21%0D%0AbesOtte%0D%0A%0D%0Aesto+q+m+dijistes+ta+groxo+maallll+grax+xq+m+dijistessss+cdo+lo+vistessssss%0D%0A%0D%0Atoy+reeee+lokooo+blds%21%21%0D%0Aaahhrrreee%0D%0At+qiero%2C+we%2C+chauuuu%21%21%21%0D%0Abss.%0D%0Aazi+ez+ezto%2C+nos+vems%2C+stamos.+dspu%E9s+dcime.+4gu4n73+a77aqu3%0D%0Ajkajkajkaajkajk">Translation Example</a><br/><br/>This site is not affiliated with Google and is not against floggers or any internet community<br/><br/>©2008 Santiago Bruno</div>
+    <a href="http://www.santiagobruno.com.ar/programas.html#deflog">More info on my website</a> - <a href="http://cervezaconlupines.blogspot.com/2008/03/presentando-deflog.html">About This Shit</a> - <a href="index?text=LocURaAAaaA%21%21%21%0D%0Ake+loko+estoooo+mIeRdA%21%21%21%0D%0A%0D%0AAaAaAAAaaAiiiii++firmeeennnn+leeemmmddoooo%21%21%21%0D%0A%0D%0Anuc+k+pasa+ak.+t+voi+a+ver+dsp.%0D%0Aqe+andes+d+mil%21%21%0D%0AbesOtte%0D%0A%0D%0Aesto+q+m+dijistes+ta+groxo+maallll+grax+xq+m+dijistessss+cdo+lo+vistessssss%0D%0A%0D%0Atoy+reeee+lokooo+blds%21%21%0D%0Aaahhrrreee%0D%0At+qiero%2C+we%2C+chauuuu%21%21%21%0D%0Abss.%0D%0Aazi+ez+ezto%2C+nos+vems%2C+stamos.+dspu%C3%A9s+dcime.+4gu4n73+a77aqu3%0D%0Ajkajkajkaajkajk">Translation Example</a><br/><br/>This site is not affiliated with Google and is not against floggers or any internet community<br/><br/>©2008 Santiago Bruno</div>
 
 </body>
 </html>"""
